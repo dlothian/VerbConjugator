@@ -1,0 +1,41 @@
+{
+    "name": "subject",
+    "children": [
+        {
+            "id": " 1-pl",
+            "translation": " We"
+        },
+        {
+            "id": " 1-sg",
+            "translation": " I"
+        },
+        {
+            "id": " 2-pl",
+            "translation": " You all"
+        },
+        {
+            "id": " 2-sg",
+            "translation": " You"
+        },
+        {
+            "id": " 3-pl-f",
+            "translation": " They (f)"
+        },
+        {
+            "id": " 3-pl-m",
+            "translation": " They (m)"
+        },
+        {
+            "id": " 3-sg-f",
+            "translation": " She"
+        },
+        {
+            "id": " 3-sg-m",
+            "translation": " He"
+        },
+        {
+            "id": " 3-sg-n",
+            "translation": " It"
+        }
+    ]
+}
