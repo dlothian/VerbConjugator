@@ -1,6 +1,7 @@
 import csv
 import os, json
 import codecs
+import sys
 
 class CSVtoDict:
 
@@ -49,6 +50,7 @@ class CSVtoDict:
         with codecs.open(self.input_file, encoding='latin1') as f:
             reader = csv.reader(f)
             self.headers = next(reader)
+            self.headers = [x.lower() for x in self.headers]
 
     def conjugationFile(self, p):
         if not os.path.exists('csv2tree_data/app_json_files'):
@@ -76,7 +78,7 @@ class CSVtoDict:
         """
         with codecs.open(self.input_file, encoding='latin1') as csvfile:
             scrape_dict = csv.DictReader(csvfile)
-            self.list_of_dicts = [x for x in scrape_dict]
+            self.list_of_dicts = [x.lower() for x in scrape_dict]
         
     def removeDupe(self, removeFrom):
         """
@@ -85,28 +87,6 @@ class CSVtoDict:
         
         return [dict(t) for t in {tuple(d.items()) for d in removeFrom}]
         
-    def adjustVAIT(self):
-        rmv = []
-        addto = []
-        for d in self.list_of_dicts:
-            if d["verb_type"] == "VAIT":
-                rmv.append(d)
-                temp_VAI = {key: value[:] for key, value in d.items()}
-                temp_VAI['verb_type'] = "VAI"
-                temp_VAI['verb'] = temp_VAI['verb'].replace('VAIT', 'VAI')
-                addto.append(temp_VAI)
-
-                temp_VTA = {key: value[:] for key, value in d.items()}
-                temp_VTA['verb_type'] = 'VTA'
-                temp_VTA['verb_translation'] += " him/her/it"
-                temp_VTA['verb'] = temp_VTA['verb'].replace('VAIT', 'VTA')
-                addto.append(temp_VTA)
-
-                temp_VTI = {key: value[:] for key, value in d.items()}
-                temp_VTI['verb_type'] = 'VTI'
-                temp_VTI['verb_translation'] += " it"
-                temp_VTI['verb'] = temp_VTI['verb'].replace('VAIT', 'VTI')
-                addto.append(temp_VTI)
 
         for r in rmv:
             self.list_of_dicts.remove(r)
