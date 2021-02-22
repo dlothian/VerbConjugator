@@ -1,0 +1,22 @@
+.active-item{
+    border-left: 8px solid var(--ion-color-primary);
+}
+
+ion-tab-button.tab-selected {
+    background-color: #211C1E;
+    ion-label {
+      color: white;
+    }
+  }
+
+ion-tab-bar {
+    --border: none;
+    padding-bottom: 1%;
+}
+
+ion-label{
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    color: #211C1E;
+}

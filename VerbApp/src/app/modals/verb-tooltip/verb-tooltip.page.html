@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+<ion-header>
+  <ion-toolbar color="{{conj_type}}">
+    <ion-title class="ion-no-padding" text-center>{{conj_type | titlecase}} Tooltip</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="description" [innerHTML]="getTip()"></div>
+  
+
+</ion-content>
+<ion-footer class="footer" class="ion-no-border ion-text-center">
+  <ion-button class="cancel" (click)="closeModal()" color="{{conj_type}}">OK</ion-button>
+</ion-footer>
+

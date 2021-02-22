@@ -1,0 +1,58 @@
+<ion-content color="background">
+
+  <ion-grid class="ion-no-margin ion-no-padding justify-content-center">
+    <ion-row class="ion-no-margin ion-no-padding">
+      <ion-col class="ion-no-margin ion-no-padding ion-text-center" size-sm="8" offset-sm="2" size-md="6" offset-md="3" size-xl="4" offset-xl="4">
+
+        <ion-card [ngSwitch]="true" *ngFor="let item of service.information; let i = index;" color="{{item.name}}" lines="none" detail="false" no-padding>
+          <!-- <div *ngSwitchCase="item.cat.length > 10 && item.name != 'verb'"> -->
+          <div *ngSwitchDefault>
+          <ion-card-content>
+            <ion-item color="{{item.name}}" lines="none">
+              <ion-card-title class="title">{{item.name | titlecase}}</ion-card-title>
+              <ion-icon (click)="openModalToolTip(item.name)" slot="end" class ="tooltip" name="help-circle-outline"></ion-icon>
+            </ion-item>
+          </ion-card-content>
+
+          <ion-item color="{{item.name}}" class="selected" disabled="{{item.disabled}}">
+            <img (click)="openModalSearch(item.name, i)" class="icon" src="../../../assets/searchicon.png">
+            <ion-text [hidden]=true>
+              <p>verb0: <strong>{{verb0 | json}}</strong></p>
+            </ion-text>
+            <ion-label>{{selectedOptions[item.name].translation}}</ion-label>
+          </ion-item>
+          </div>
+
+            <!-- <div *ngSwitchDefault>
+            <ion-card-content>
+              <ion-item color="{{item.name}}" lines="none">
+                <ion-card-title class="title">{{item.name | titlecase}}</ion-card-title>
+                <ion-icon class="tooltip" (click)="openModalToolTip(item.name)" slot="end" name="help-circle-outline"></ion-icon>
+              </ion-item>
+            </ion-card-content>
+
+            <ion-item class="selected" tappable (click)="item.open = !item.open;" color="{{item.name}}" disabled="{{item.disabled}}">
+              <ion-item class="selected" tappable (click)="item.open = !item.open;" color="{{item.name}}">
+              <img class="icon" src={{chooseOpen(item.open)}}>
+              <ion-label class="selected">{{selectedOptions[item.name].translation}}</ion-label>
+            </ion-item>
+
+            <div *ngIf="item.open">
+                  <ion-list *ngFor="let child of item.cat; let j = index;" class="ion-no-margin ion-no-padding">
+                    <ion-item tappable (click)="toggleItem(i, j)" color="{{item.name}}" class="child">
+                      <ion-label class="english">
+                        {{child.translation}}
+                      </ion-label>
+                    </ion-item>
+                  </ion-list>
+            </div>
+            </div> -->
+        </ion-card>
+  
+        <ion-button (click)=Conjugate()>conjugate</ion-button>
+        <p class="result">{{result}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

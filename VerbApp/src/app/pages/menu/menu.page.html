@@ -1,0 +1,27 @@
+
+  <ion-menu contentId="content">
+
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>
+          Menu
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <!-- Auto hides the menu on small screen but keeps it open on large screen. routerDirection is about animation -->
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+          <ion-item [routerLink]= "p.url" routerDirection = "root" [class.active-item] = "selectedPath === p.url">
+            {{p.title}}
+          </ion-item>
+
+        </ion-menu-toggle>
+      </ion-list>
+
+    </ion-content>
+
+  </ion-menu>
+
+  <ion-router-outlet id="content" main></ion-router-outlet>

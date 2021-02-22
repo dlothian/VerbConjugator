@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<ion-header>
+  <ion-toolbar color="{{conj_type}}">
+    <ion-title class="ion-no-padding" text-center>{{conj_type | titlecase}}</ion-title>
+    
+  </ion-toolbar>
+  <ion-searchbar (keyup) = getResults($event) autocapitalize="none" show-cancel="true" class="ion-no-padding" color="white"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list class="body" color="white" lines="inset">
+    <ion-item button (click)=selectItem(item) class="entry" color="white" *ngFor='let item of matches' detail="false" [class.active-item] = "selectedItemID === item.id">
+      <div class=right>
+        <ion-label class="ion-text-wrap" >{{item.translation | titlecase}}</ion-label>  
+        <ion-label class="verb">{{item.id}}</ion-label>
+      </div>
+      
+      
+      <!-- <img class="checkmark" src="../../assets/greencheckmark.png"> -->
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer class="footer" [style.background-color]="myColor">
+  <ion-button class="cancel" (click)="closeModal()" [style.background-color]="myColor" fill="outline">Cancel</ion-button>
+  <ion-button class="select" (click)="closeModalWithData()" color="white" [style.color]="myColor" disabled="{{isDisabled}}">Select</ion-button>
+
+
+</ion-footer>
+

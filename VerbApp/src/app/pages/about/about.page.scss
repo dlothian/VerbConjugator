@@ -1,0 +1,26 @@
+h5{
+    padding: 15px 10px !important;
+    text-align: center;
+}
+
+.logo{
+    padding: 15px !important;
+    margin: auto;
+    display: block;
+
+}
+
+div {
+    width:100%;
+    position: absolute;
+    bottom:0;
+}
+
+ion-content{
+    --ion-background-color:#FFEDD3 !important;
+    // --ion-background-color: transparent !important;
+    --background: url('../../../assets/background_flower.png') center no-repeat;
+    
+}
+
+
