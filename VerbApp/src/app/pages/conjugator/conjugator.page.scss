@@ -23,8 +23,13 @@ ion-item{
   // color: white !important;
 }
 
-.tooltip{
-  color: white !important;
+.chosen{
+  font-weight: bold;
+}
+
+.chosen_base{
+  font-style: italic;
+  padding: 0;
 }
 
 ion-label{
@@ -70,4 +75,8 @@ ion-button{
   width: 30%;
   font-weight: bold;
   font-size: 16px;
+}
+
+.error{
+  color: red;
 }

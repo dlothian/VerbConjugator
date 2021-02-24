@@ -25,11 +25,12 @@ export class ConjugatorPage implements OnInit {
   closed = '../../../assets/plusicon.png';
 
   result = '';
+  error = '';
   showVerb = '';
   selectedValues: any[];
   automaticClose = false;
   myFunInformation$ = new BehaviorSubject(this.service.information);
-  selectedOptions: { [id: string]: { translation, id } } = {};
+  selectedOptions: { [id: string]: { translation, id, base } } = {};
 
   selectedPath: { [id: string]: node} = {};
 
@@ -47,6 +48,7 @@ export class ConjugatorPage implements OnInit {
       let key = element.name;
       this.selectedOptions[key] = {
         translation: '',
+        base: '',
         id: '',
       };
     });
@@ -61,6 +63,10 @@ export class ConjugatorPage implements OnInit {
 
   scrollToBottom() {
     this.getContent().scrollToBottom(500);
+  }
+
+  scrollToTop() {
+    this.getContent().scrollToTop(500);
   }
 
 
@@ -121,7 +127,7 @@ export class ConjugatorPage implements OnInit {
     let key: string;
     for(let i = index; i < this.service.information.length; i ++){ // find all categories at a lower index
       key = this.service.information[i].name; // get the name
-      this.selectedOptions[key] = {translation: '', id: ''};  // reset so that there is no selected option at that name
+      this.selectedOptions[key] = {translation: '', id: '', base:''};  // reset so that there is no selected option at that name
       this.service.information[i].disabled=true; // disable access
     }
     console.log(this.selectedOptions);
@@ -135,6 +141,7 @@ export class ConjugatorPage implements OnInit {
     */
     this.selectedOptions[pos].translation = selected.translation;
     this.selectedOptions[pos].id = selected.id;
+    this.selectedOptions[pos].base = selected.base;
   }
 
 
@@ -164,6 +171,19 @@ export class ConjugatorPage implements OnInit {
   }
 
   Conjugate(){
+    console.log("conjugate",this.selectedOptions);
+    let canconjugate = true;
+    Object.keys(this.selectedOptions).forEach(element => {
+      
+      if (this.selectedOptions[element].id === ''){
+        canconjugate = false;
+      }
+    }); 
+    if (!canconjugate){
+      this.error = "Please make sure to choose an option from each category."
+      return;
+    }
+    this.error = '';
     let results = this.service.conjugate(this.selectedOptions);
     let s = '';
     for (let r of results){
@@ -172,6 +192,19 @@ export class ConjugatorPage implements OnInit {
     }
     this.result = s;
     this.scrollToBottom();
+  }
+
+  reset(){
+    let key: string;
+    for(let i = 0; i < this.service.information.length; i ++){ // find all categories at a lower index
+      key = this.service.information[i].name; // get the name
+      this.selectedOptions[key] = {translation: '', id: '', base:''};  // reset so that there is no selected option at that name
+      this.service.information[i].disabled=true; // disable access
+    }
+    this.service.information[0].disabled=false;
+    this.result = '';
+    this.error = '';
+    this.scrollToTop();
   }
 
 
@@ -190,6 +223,7 @@ export class ConjugatorPage implements OnInit {
         if (dataReturned.data.id.length > 0) { // if something was returned, set it as the selected option
           this.selectedOptions[whichSearch].translation = dataReturned.data.id;
           this.selectedOptions[whichSearch].id = dataReturned.data.id;
+          this.selectedOptions[whichSearch].base = dataReturned.data.base;
           this.updateDisabled(whichSearch,index);
           this.updatePath(whichSearch,index, dataReturned.data);
         }
