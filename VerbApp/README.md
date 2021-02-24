@@ -6,6 +6,11 @@ This project requires:
     - [ionic] (https://ionicframework.com/docs/intro/cli) >= 6.13.1 
     
     - [cordova] (https://ccoenraets.github.io/cordova-tutorial/create-cordova-project.html) >= 9.0.0
+
+    - angular  cli
+        - npm i -g ansi-colors
+        - npm i -g debug
+        - npm i -g uuid
     
 ## Inital Test
 This project comes initialized as a French conjugator. To see how it looks, navigate to the current directory and run the following:
