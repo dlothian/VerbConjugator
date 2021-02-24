@@ -6,7 +6,7 @@ import fileinput
 
 class CSVtoDict:
 
-    def __init__(self, input_file, delimiter=None, order=None, app_order=None):
+    def __init__(self, input_file, delimiter=None, order=None):
         """Initalizes relevant variables.
 
         Args:
@@ -14,7 +14,6 @@ class CSVtoDict:
             of python dictionaries.
         """
         self.order = order
-        self.app_order = app_order
         self.input_file = input_file  
         self.list_of_dicts = []
         self.attr_list_of_dicts = []
@@ -94,9 +93,6 @@ class CSVtoDict:
         attribute = {}
         if self.order:
             primary = set(self.order)
-        if self.app_order:
-            for a in self.app_order:
-                primary.add(a)
         else:
             for col_name in self.headers:
                 if self.delimiter not in col_name:

@@ -54,10 +54,10 @@ class TreeBuilder:
         for verb in self.input_dict: # Going through each dictionary in new list
             self.recursiveTree(tree, verb, 0)
 
-        if not os.path.exists('../../VerbApp/src/assets/JSON'):
-            os.makedirs('../../VerbApp/src/assets/JSON')
+        if not os.path.exists('JSON'):
+            os.makedirs('JSON')
 
-        self.output_file = '../../VerbApp/src/assets/JSON/' + self.output_file
+        self.output_file = 'JSON/' + self.output_file
         with open(self.output_file, 'w') as json_file:
             json.dump(tree, json_file,indent=4, sort_keys=True)
 

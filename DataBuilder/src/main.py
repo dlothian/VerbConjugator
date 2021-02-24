@@ -45,16 +45,16 @@ def main():
             conjugation_order = [x.strip().lower() for x in conjugation_order]
 
     print("Progress [      ]",end='\r')
-    c2d = CSVtoDict(input_file=input_file, order=tree_order, app_order=app_order)
+    c2d = CSVtoDict(input_file=input_file, order=tree_order)
     dict_list, attr_dict_list = c2d.execute()
     print("Progress [=>    ]",end='\r')
     tb = TreeBuilder(dict_list, "category_tree.json", tree_order)
     print("Progress [==>   ]",end='\r')
-    ob = OptionBuilder(attr_dict_list, app_order)
+    ob = OptionBuilder(attr_dict_list, tree_order)
     print("Progress [===>  ]",end='\r')
     
 
-    c2d = CSVtoDict(input_file=input_file, order=conjugation_order, app_order=app_order)
+    c2d = CSVtoDict(input_file=input_file, order=conjugation_order)
     dict_list, attr_dict_list = c2d.execute()
     print("Progress [====> ]",end='\r')
     tb = TreeBuilder(dict_list, "conjugation.json", conjugation_order)
@@ -62,12 +62,12 @@ def main():
     
 
 
-    with open('../../VerbApp/src/assets/JSON/conjugation.json', 'r') as f:
+    with open('JSON/conjugation.json', 'r') as f:
         f_str = f.read()
         d = json.loads(f_str)
         l = [conjugation_order, d]
         f.close()
-    with open('../../VerbApp/src/assets/JSON/conjugation.json', 'w') as f:
+    with open('JSON/conjugation.json', 'w') as f:
         json.dump(l, f, indent=4)
         f.close()
 
