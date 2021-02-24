@@ -6,10 +6,10 @@ const routes: Routes = [
   //   path: '',
   //   loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
   // },
-  {
-    path: 'verbs',
-    loadChildren: () => import('./modals/verbs/verbs.module').then( m => m.VerbsPageModule)
-  },
+  // {
+  //   path: 'verbs',
+  //   loadChildren: () => import('./modals/verbs/verbs.module').then( m => m.VerbsPageModule)
+  // },
   {
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)

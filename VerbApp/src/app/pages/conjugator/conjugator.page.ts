@@ -4,7 +4,6 @@ import { DataService } from '../../services/data.service';
 import { grammarCatItem } from '../../models/grammar-cat-item.model';
 import { grammarCat } from '../../models/grammar-cat.model';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
-// import { VerbsPage } from '../../modals/verbs/verbs.page';
 import { SearchPage } from '../../modals/search/search.page';
 import { node } from "../../models/node.model";
 import { VerbTooltipPage } from '../../modals/verb-tooltip/verb-tooltip.page';
@@ -221,7 +220,8 @@ export class ConjugatorPage implements OnInit {
       // trigger when about to close the modal
       if (dataReturned != null || dataReturned != undefined){
         if (dataReturned.data.id.length > 0) { // if something was returned, set it as the selected option
-          this.selectedOptions[whichSearch].translation = dataReturned.data.id;
+          console.log(dataReturned.data);
+          this.selectedOptions[whichSearch].translation = dataReturned.data.translation;
           this.selectedOptions[whichSearch].id = dataReturned.data.id;
           this.selectedOptions[whichSearch].base = dataReturned.data.base;
           this.updateDisabled(whichSearch,index);
