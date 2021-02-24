@@ -2,7 +2,7 @@ import itertools
 import re, os
 import sys
 import json
-import sys
+import numpy
 
 class TreeBuilder:
 
