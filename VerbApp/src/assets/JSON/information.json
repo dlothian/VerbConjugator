@@ -243,6 +243,11 @@
                 "base": "ecrire"
             },
             {
+                "id": "ecrire",
+                "translation": " write",
+                "base": "ecrireverb"
+            },
+            {
                 "id": "enfievrer",
                 "translation": " have a fever",
                 "base": "enfievrer"
@@ -319,7 +324,7 @@
             },
             {
                 "id": "grasseyer",
-                "translation": " speak with a uvulur R",
+                "translation": " speak with a uvulur r",
                 "base": "grasseyer"
             },
             {
@@ -725,43 +730,756 @@
         ]
     },
     {
+        "name": "conjugation",
+        "children": [
+            {
+                "id": " a"
+            },
+            {
+                "id": " abr"
+            },
+            {
+                "id": " abso"
+            },
+            {
+                "id": " accr"
+            },
+            {
+                "id": " ach"
+            },
+            {
+                "id": " acqu"
+            },
+            {
+                "id": " adv"
+            },
+            {
+                "id": " ai"
+            },
+            {
+                "id": " aie"
+            },
+            {
+                "id": " aient"
+            },
+            {
+                "id": " aies"
+            },
+            {
+                "id": " aille"
+            },
+            {
+                "id": " aillent"
+            },
+            {
+                "id": " ailles"
+            },
+            {
+                "id": " aim"
+            },
+            {
+                "id": " ait"
+            },
+            {
+                "id": " ali"
+            },
+            {
+                "id": " alla"
+            },
+            {
+                "id": " allai"
+            },
+            {
+                "id": " allaient"
+            },
+            {
+                "id": " allais"
+            },
+            {
+                "id": " allait"
+            },
+            {
+                "id": " allas"
+            },
+            {
+                "id": " allasse"
+            },
+            {
+                "id": " allassent"
+            },
+            {
+                "id": " allasses"
+            },
+            {
+                "id": " allassiez"
+            },
+            {
+                "id": " allassions"
+            },
+            {
+                "id": " allez"
+            },
+            {
+                "id": " alliez"
+            },
+            {
+                "id": " allions"
+            },
+            {
+                "id": " allons"
+            },
+            {
+                "id": " all\u00cc\u00a2mes"
+            },
+            {
+                "id": " all\u00cc\u00a2t"
+            },
+            {
+                "id": " all\u00cc\u00a2tes"
+            },
+            {
+                "id": " all\u00cc\u00a9"
+            },
+            {
+                "id": " all\u00cc\u00a9e"
+            },
+            {
+                "id": " all\u00cc\u00a9es"
+            },
+            {
+                "id": " all\u00cc\u00a9s"
+            },
+            {
+                "id": " all\u00cc\u00acrent"
+            },
+            {
+                "id": " amu"
+            },
+            {
+                "id": " app"
+            },
+            {
+                "id": " as"
+            },
+            {
+                "id": " ass"
+            },
+            {
+                "id": " assaill"
+            },
+            {
+                "id": " aura"
+            },
+            {
+                "id": " aurai"
+            },
+            {
+                "id": " auraient"
+            },
+            {
+                "id": " aurais"
+            },
+            {
+                "id": " aurait"
+            },
+            {
+                "id": " auras"
+            },
+            {
+                "id": " aurez"
+            },
+            {
+                "id": " auriez"
+            },
+            {
+                "id": " aurions"
+            },
+            {
+                "id": " aurons"
+            },
+            {
+                "id": " auront"
+            },
+            {
+                "id": " avaient"
+            },
+            {
+                "id": " avais"
+            },
+            {
+                "id": " avait"
+            },
+            {
+                "id": " avez"
+            },
+            {
+                "id": " aviez"
+            },
+            {
+                "id": " avions"
+            },
+            {
+                "id": " avons"
+            },
+            {
+                "id": " ayez"
+            },
+            {
+                "id": " ayons"
+            },
+            {
+                "id": " b"
+            },
+            {
+                "id": " bat"
+            },
+            {
+                "id": " bou"
+            },
+            {
+                "id": " bra"
+            },
+            {
+                "id": " brui"
+            },
+            {
+                "id": " brumass"
+            },
+            {
+                "id": " c"
+            },
+            {
+                "id": " ch"
+            },
+            {
+                "id": " cha"
+            },
+            {
+                "id": " circonc"
+            },
+            {
+                "id": " cl"
+            },
+            {
+                "id": " concl"
+            },
+            {
+                "id": " condui"
+            },
+            {
+                "id": " cou"
+            },
+            {
+                "id": " cour"
+            },
+            {
+                "id": " cr"
+            },
+            {
+                "id": " crai"
+            },
+            {
+                "id": " cueill"
+            },
+            {
+                "id": " c\u00cc\u00a9l"
+            },
+            {
+                "id": " d"
+            },
+            {
+                "id": " diss"
+            },
+            {
+                "id": " disso"
+            },
+            {
+                "id": " dor"
+            },
+            {
+                "id": " d\u00cc\u00a9"
+            },
+            {
+                "id": " d\u00cc\u00a9ch"
+            },
+            {
+                "id": " d\u00cc\u00a9cr"
+            },
+            {
+                "id": " d\u00cc\u00a9p"
+            },
+            {
+                "id": " enfi"
+            },
+            {
+                "id": " env"
+            },
+            {
+                "id": " es"
+            },
+            {
+                "id": " est"
+            },
+            {
+                "id": " eu"
+            },
+            {
+                "id": " eue"
+            },
+            {
+                "id": " eues"
+            },
+            {
+                "id": " eurent"
+            },
+            {
+                "id": " eus"
+            },
+            {
+                "id": " eusse"
+            },
+            {
+                "id": " eussent"
+            },
+            {
+                "id": " eusses"
+            },
+            {
+                "id": " eussiez"
+            },
+            {
+                "id": " eussions"
+            },
+            {
+                "id": " eut"
+            },
+            {
+                "id": " ex"
+            },
+            {
+                "id": " extra"
+            },
+            {
+                "id": " e\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdmes"
+            },
+            {
+                "id": " e\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdt"
+            },
+            {
+                "id": " e\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdtes"
+            },
+            {
+                "id": " f"
+            },
+            {
+                "id": " fa"
+            },
+            {
+                "id": " fin"
+            },
+            {
+                "id": " fl"
+            },
+            {
+                "id": " forclo"
+            },
+            {
+                "id": " fri"
+            },
+            {
+                "id": " fu"
+            },
+            {
+                "id": " furent"
+            },
+            {
+                "id": " fus"
+            },
+            {
+                "id": " fusse"
+            },
+            {
+                "id": " fussent"
+            },
+            {
+                "id": " fusses"
+            },
+            {
+                "id": " fussiez"
+            },
+            {
+                "id": " fussions"
+            },
+            {
+                "id": " fut"
+            },
+            {
+                "id": " f\u00cc\u00a9r"
+            },
+            {
+                "id": " f\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdmes"
+            },
+            {
+                "id": " f\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdt"
+            },
+            {
+                "id": " f\u00ef\u00bf\u00bd\u00ef\u00bf\u00bdtes"
+            },
+            {
+                "id": " g"
+            },
+            {
+                "id": " grasse"
+            },
+            {
+                "id": " ha"
+            },
+            {
+                "id": " harc"
+            },
+            {
+                "id": " h\u00cc\u00a9b"
+            },
+            {
+                "id": " imp"
+            },
+            {
+                "id": " incl"
+            },
+            {
+                "id": " int"
+            },
+            {
+                "id": " interd"
+            },
+            {
+                "id": " ira"
+            },
+            {
+                "id": " irai"
+            },
+            {
+                "id": " iraient"
+            },
+            {
+                "id": " irais"
+            },
+            {
+                "id": " irait"
+            },
+            {
+                "id": " iras"
+            },
+            {
+                "id": " irez"
+            },
+            {
+                "id": " iriez"
+            },
+            {
+                "id": " irions"
+            },
+            {
+                "id": " irons"
+            },
+            {
+                "id": " iront"
+            },
+            {
+                "id": " j"
+            },
+            {
+                "id": " l"
+            },
+            {
+                "id": " lu"
+            },
+            {
+                "id": " m"
+            },
+            {
+                "id": " man"
+            },
+            {
+                "id": " maud"
+            },
+            {
+                "id": " men"
+            },
+            {
+                "id": " mou"
+            },
+            {
+                "id": " m\u00cc\u00a9d"
+            },
+            {
+                "id": " n"
+            },
+            {
+                "id": " netto"
+            },
+            {
+                "id": " none"
+            },
+            {
+                "id": " nui"
+            },
+            {
+                "id": " o"
+            },
+            {
+                "id": " occi"
+            },
+            {
+                "id": " oi"
+            },
+            {
+                "id": " ont"
+            },
+            {
+                "id": " ouv"
+            },
+            {
+                "id": " p"
+            },
+            {
+                "id": " pa"
+            },
+            {
+                "id": " par"
+            },
+            {
+                "id": " pl"
+            },
+            {
+                "id": " pla"
+            },
+            {
+                "id": " poi"
+            },
+            {
+                "id": " pourv"
+            },
+            {
+                "id": " pr"
+            },
+            {
+                "id": " prom"
+            },
+            {
+                "id": " pr\u00cc\u00a9d"
+            },
+            {
+                "id": " pr\u00cc\u00a9v"
+            },
+            {
+                "id": " pr\u00cc\u00a9va"
+            },
+            {
+                "id": " qu"
+            },
+            {
+                "id": " r"
+            },
+            {
+                "id": " rec"
+            },
+            {
+                "id": " recr"
+            },
+            {
+                "id": " ren"
+            },
+            {
+                "id": " rep"
+            },
+            {
+                "id": " rom"
+            },
+            {
+                "id": " r\u00cc\u00a9f"
+            },
+            {
+                "id": " r\u00cc\u00a9f\u00cc\u00a9renci"
+            },
+            {
+                "id": " r\u00cc\u00a9so"
+            },
+            {
+                "id": " r\u00cc\u00a9v"
+            },
+            {
+                "id": " s"
+            },
+            {
+                "id": " saill"
+            },
+            {
+                "id": " ser"
+            },
+            {
+                "id": " sera"
+            },
+            {
+                "id": " serai"
+            },
+            {
+                "id": " seraient"
+            },
+            {
+                "id": " serais"
+            },
+            {
+                "id": " serait"
+            },
+            {
+                "id": " seras"
+            },
+            {
+                "id": " serez"
+            },
+            {
+                "id": " seriez"
+            },
+            {
+                "id": " serions"
+            },
+            {
+                "id": " serons"
+            },
+            {
+                "id": " seront"
+            },
+            {
+                "id": " soient"
+            },
+            {
+                "id": " sois"
+            },
+            {
+                "id": " soit"
+            },
+            {
+                "id": " sommes"
+            },
+            {
+                "id": " sont"
+            },
+            {
+                "id": " soyez"
+            },
+            {
+                "id": " soyons"
+            },
+            {
+                "id": " suff"
+            },
+            {
+                "id": " sui"
+            },
+            {
+                "id": " suis"
+            },
+            {
+                "id": " surs"
+            },
+            {
+                "id": " t"
+            },
+            {
+                "id": " ten"
+            },
+            {
+                "id": " v"
+            },
+            {
+                "id": " va"
+            },
+            {
+                "id": " vain"
+            },
+            {
+                "id": " vais"
+            },
+            {
+                "id": " vas"
+            },
+            {
+                "id": " vont"
+            },
+            {
+                "id": " v\u00cc\u00bbt"
+            },
+            {
+                "id": " \u00cc\u00a9ch"
+            },
+            {
+                "id": " \u00cc\u00a9clo"
+            },
+            {
+                "id": " \u00cc\u00a9cri"
+            },
+            {
+                "id": " \u00cc\u00a9taient"
+            },
+            {
+                "id": " \u00cc\u00a9tais"
+            },
+            {
+                "id": " \u00cc\u00a9tait"
+            },
+            {
+                "id": " \u00cc\u00a9tiez"
+            },
+            {
+                "id": " \u00cc\u00a9tions"
+            },
+            {
+                "id": " \u00cc\u00a9t\u00cc\u00a9"
+            },
+            {
+                "id": " \u00cc\u00bbtes"
+            }
+        ]
+    },
+    {
         "name": "subject",
         "children": [
             {
                 "id": " 1-pl",
-                "translation": " We"
+                "translation": " we"
             },
             {
                 "id": " 1-sg",
-                "translation": " I"
+                "translation": " i"
             },
             {
                 "id": " 2-pl",
-                "translation": " You all"
+                "translation": " you all"
             },
             {
                 "id": " 2-sg",
-                "translation": " You"
+                "translation": " you"
             },
             {
                 "id": " 3-pl-f",
-                "translation": " They (f)"
+                "translation": " they (f)"
             },
             {
                 "id": " 3-pl-m",
-                "translation": " They (m)"
+                "translation": " they (m)"
             },
             {
                 "id": " 3-sg-f",
-                "translation": " She"
+                "translation": " she"
             },
             {
                 "id": " 3-sg-m",
-                "translation": " He"
+                "translation": " he"
             },
             {
                 "id": " 3-sg-n",
-                "translation": " It"
+                "translation": " it"
             }
         ]
     },
@@ -770,39 +1488,39 @@
         "children": [
             {
                 "id": " conditionnel-present",
-                "translation": " Conditional"
+                "translation": " conditional"
             },
             {
                 "id": " imperatif-present",
-                "translation": " Imperative"
+                "translation": " imperative"
             },
             {
                 "id": " indicatif-futur",
-                "translation": " Indicative"
+                "translation": " indicative"
             },
             {
                 "id": " indicatif-imparfait",
-                "translation": " Indicative"
+                "translation": " indicative"
             },
             {
                 "id": " indicatif-passe-simple",
-                "translation": " Indicative"
+                "translation": " indicative"
             },
             {
                 "id": " indicatif-present",
-                "translation": " Indicative"
+                "translation": " indicative"
             },
             {
                 "id": " participe-passe",
-                "translation": " Participal"
+                "translation": " participal"
             },
             {
                 "id": " subjonctif-imparfait",
-                "translation": " Subjonctive"
+                "translation": " subjonctive"
             },
             {
                 "id": " subjonctif-present",
-                "translation": " Subjonctive"
+                "translation": " subjonctive"
             }
         ]
     }
