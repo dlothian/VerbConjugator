@@ -1,8 +1,11 @@
 ## Requirements
 This project requires:
-    * [npm] (https://www.npmjs.com/get-npm) >= 6.14.7
-    * [ionic] (https://ionicframework.com/docs/intro/cli) >= 6.13.1
-    * [cordova] (https://ccoenraets.github.io/cordova-tutorial/create-cordova-project.html) >= 9.0.0
+
+    - [npm] (https://www.npmjs.com/get-npm) >= 6.14.7 
+    
+    - [ionic] (https://ionicframework.com/docs/intro/cli) >= 6.13.1 
+    
+    - [cordova] (https://ccoenraets.github.io/cordova-tutorial/create-cordova-project.html) >= 9.0.0
     
 ## Inital Test
 This project comes initialized as a French conjugator. To see how it looks, navigate to the current directory and run the following:
