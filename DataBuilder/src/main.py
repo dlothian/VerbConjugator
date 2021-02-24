@@ -62,12 +62,12 @@ def main():
     
 
 
-    with open('JSON/conjugation.json', 'r') as f:
+    with open('../../VerbApp/src/assets/JSON/conjugation.json', 'r') as f:
         f_str = f.read()
         d = json.loads(f_str)
         l = [conjugation_order, d]
         f.close()
-    with open('JSON/conjugation.json', 'w') as f:
+    with open('../../VerbApp/src/assets/JSON/conjugation.json', 'w') as f:
         json.dump(l, f, indent=4)
         f.close()
 

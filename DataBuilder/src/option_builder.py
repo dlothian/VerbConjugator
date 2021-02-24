@@ -41,9 +41,9 @@ class OptionBuilder:
         Creates each file using the attr dictionary where each key has a set of unique values.
         Files are saved to the 'data' folder.
         """
-        if not os.path.exists('JSON/'):
-            os.makedirs('JSON/')
-        major_output_file = "JSON/information.json"
+        if not os.path.exists('../../VerbApp/src/assets/JSON/'):
+            os.makedirs('../../VerbApp/src/assets/JSON/')
+        major_output_file = "../../VerbApp/src/assets/JSON/information.json"
         major = {}
         for attr in self.attrs:
             if self.app_order:
