@@ -39,8 +39,10 @@ def main():
         tree_order_file = open(tree_order, 'r')
         orders = tree_order_file.readlines()
         tree_order = orders[0].strip().split(',')
+        tree_order = [x.strip().lower() for x in tree_order]
         if len(orders) >= 2:
             conjugation_order = orders[1].strip().split(',')
+            conjugation_order = [x.strip().lower() for x in conjugation_order]
 
     print("Progress [      ]",end='\r')
     c2d = CSVtoDict(input_file=input_file, order=tree_order, app_order=app_order)
