@@ -17,9 +17,8 @@ div {
 }
 
 ion-content{
-    --ion-background-color:#FFEDD3 !important;
+    --ion-background-color: var(--ion-color-background) !important;
     // --ion-background-color: transparent !important;
-    --background: url('../../../assets/background_flower.png') center no-repeat;
     
 }
 
