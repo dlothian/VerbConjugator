@@ -2,6 +2,7 @@ import csv
 import os, json
 import codecs
 import sys
+import fileinput
 
 class CSVtoDict:
 
@@ -23,24 +24,33 @@ class CSVtoDict:
         else:
             self.delimiter = "_"
 
+
+    def cleanData(self):
+        f = open(self.input_file, 'r')
+        text = f.read()
+        
+        lines = [text.lower() for line in self.input_file]
+        self.input_file = self.input_file[:self.input_file.find(".csv")] + "_temp.csv"
+        with open(self.input_file, 'w') as out:
+            out.writelines(lines)
+
     def execute(self):
+        self.cleanData()
         self.columnTitles()
         self.toDict()
-        
+
         p, a = self.assignRemoveAttributesTitles()
-        print('P',p)
         if not self.order:
             self.order = p
-        self.conjugationFile(p)
         self.assignRemoveAttributes()
 
-        # self.removeDupe(self.attr_list_of_dicts)
         self.removeDupe(self.list_of_dicts)
 
-        self.writeOutputs(self.attr_list_of_dicts, self.input_file +"_w_attr_dicts.txt")
-        self.writeOutputs(self.list_of_dicts, self.input_file +"_dicts.txt")
+        if os.path.exists(self.input_file):
+            os.remove(self.input_file)
 
         return self.list_of_dicts, self.attr_list_of_dicts
+
 
     def columnTitles(self):
         """
@@ -50,24 +60,7 @@ class CSVtoDict:
         with codecs.open(self.input_file, encoding='latin1') as f:
             reader = csv.reader(f)
             self.headers = next(reader)
-            self.headers = [x.lower() for x in self.headers]
 
-    def conjugationFile(self, p):
-        if not os.path.exists('csv2tree_data/app_json_files'):
-            os.makedirs('csv2tree_data/app_json_files')
-        output_file = "csv2tree_data/app_json_files/conjugation.json"
-        conj_list = []
-        for i in self.list_of_dicts:
-            c = {}
-            c['conjugation'] = i['conjugation']
-            for j in i:
-                if j in p:
-                    c[j] = i[j]
-            conj_list.append(c)
-
-
-        with open(output_file, 'w') as json_file:
-            json.dump(conj_list, json_file,indent=4)
 
     def toDict(self):
         """Reads in CSV file and 
@@ -78,7 +71,8 @@ class CSVtoDict:
         """
         with codecs.open(self.input_file, encoding='latin1') as csvfile:
             scrape_dict = csv.DictReader(csvfile)
-            self.list_of_dicts = [x.lower() for x in scrape_dict]
+            self.list_of_dicts = [x for x in scrape_dict]
+
         
     def removeDupe(self, removeFrom):
         """
@@ -86,25 +80,6 @@ class CSVtoDict:
         """
         
         return [dict(t) for t in {tuple(d.items()) for d in removeFrom}]
-        
-
-        for r in rmv:
-            self.list_of_dicts.remove(r)
-        for a in addto:
-            self.list_of_dicts.append(a)
-        
-        del rmv, addto
-
-
-    def writeOutputs(self, outputs, file_name):
-        if not os.path.exists('csv2tree_data'):
-            os.makedirs('csv2tree_data')
-        file_name = 'csv2tree_data/' + file_name
-        with open(file_name, 'w') as file:
-            for n in outputs:
-                s = str(n) + "\n"
-                file.write(s)
-            file.close()
 
 
     def assignRemoveAttributesTitles(self):
@@ -121,7 +96,6 @@ class CSVtoDict:
             primary = set(self.order)
         if self.app_order:
             for a in self.app_order:
-                print("adding to primary", a)
                 primary.add(a)
         else:
             for col_name in self.headers:
@@ -139,20 +113,17 @@ class CSVtoDict:
 
         return primary, attribute
 
+
     def assignRemoveAttributes(self):
         """
         Attributes of the primary categories are redundant in the final tree. They should be removed before the tree is made.
         """
         primary, attribute = self.assignRemoveAttributesTitles()
-        print("attribute", attribute)
         temp_dicts_list = []
-        conj_file_list = []
         for col in self.list_of_dicts:
             no_attr = {}
             attr = {}
-            conj = {}
             for x in col:
-                
                 if x in primary: 
                     no_attr[x] = col[x]
                     if x not in attr:

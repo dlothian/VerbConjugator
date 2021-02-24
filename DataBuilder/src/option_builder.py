@@ -41,23 +41,19 @@ class OptionBuilder:
         Creates each file using the attr dictionary where each key has a set of unique values.
         Files are saved to the 'data' folder.
         """
-        if not os.path.exists('csv2tree_data/app_json_files'):
-            os.makedirs('csv2tree_data/app_json_files')
-        major_output_file = "csv2tree_data/app_json_files/information.json"
+        if not os.path.exists('JSON/'):
+            os.makedirs('JSON/')
+        major_output_file = "JSON/information.json"
         major = {}
         for attr in self.attrs:
             if self.app_order:
                 if attr not in self.app_order:
                     continue
-            output_file = "csv2tree_data/app_json_files/" + attr + ".json"
             tojson = {"name":attr, "children":[]}
             for value in self.attrs[attr]:
                 tojson["children"].append(value)
             newlist = sorted(tojson["children"], key=lambda k: k['id']) 
             tojson["children"] = newlist
-
-            with open(output_file, 'w') as json_file:
-                json.dump(tojson, json_file,indent=4)
             major[attr] = tojson
 
         if self.app_order:

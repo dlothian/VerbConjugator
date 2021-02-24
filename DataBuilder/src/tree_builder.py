@@ -31,32 +31,33 @@ class TreeBuilder:
         tree = {}
         if not self.keys:
             self.keys = list(self.input_dict[0].keys())
-        # else:
-        #     temp_keys = []
-        #     for i in self.keys:
-        #         temp_keys.append(i)
-        #     temp_keys.sort()
-        #     original_keys = list(self.input_dict[0].keys())
-        #     original_keys.sort()
+        else:
+            temp_keys = []
+            for i in self.keys:
+                temp_keys.append(i)
+            temp_keys.sort()
+            original_keys = list(self.input_dict[0].keys())
+            original_keys.sort()
 
-        #     if temp_keys != original_keys:
-        #         print("Tree order file does not contain valid attribute names")
-        #         print("Tree order file attributes must be of the same name as the row headers in input file")
-        #         print("Your file's options are", original_keys)
-        #         print("Your order attribute names are", temp_keys)
-        #         exit()
-
-        print("Your tree will be built with the following structure:")
-        for i in range(len(self.keys)):
-            print("Level", i, ":", self.keys[i])
+            if not(set(temp_keys) <= set(original_keys)):
+                print("_________________")
+                print("ERROR:")
+                print("Order file does not contain valid category names")
+                print("Order file categories must be in the row headers in input file")
+                print()
+                print("Your file's options are:", ', '.join(original_keys))
+                print("Your order categories names are:", ', '.join(temp_keys))
+                print("Please check your order file and try again")
+                print("_________________")
+                exit()
 
         for verb in self.input_dict: # Going through each dictionary in new list
             self.recursiveTree(tree, verb, 0)
 
-        if not os.path.exists('csv2tree_data'):
-            os.makedirs('csv2tree_data')
+        if not os.path.exists('JSON'):
+            os.makedirs('JSON')
 
-        self.output_file = 'csv2tree_data/' + self.output_file
+        self.output_file = 'JSON/' + self.output_file
         with open(self.output_file, 'w') as json_file:
             json.dump(tree, json_file,indent=4, sort_keys=True)
 
