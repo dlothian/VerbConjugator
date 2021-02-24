@@ -5,12 +5,12 @@
 :root {
   // --ion-font-family: 
 
-  --ion-color-background: #000000;
-  --ion-color-background-rgb: 0,0,0;
-  --ion-color-background-contrast: #ffffff;
-  --ion-color-background-contrast-rgb: 255,255,255;
-  --ion-color-background-shade: #000000;
-  --ion-color-background-tint: #1a1a1a;
+  --ion-color-background: #FFB6C1;
+  --ion-color-background-rgb: 255,182,193;
+  --ion-color-background-contrast: #000000;
+  --ion-color-background-contrast-rgb: 0,0,0;
+  --ion-color-background-shade: #e0a0aa;
+  --ion-color-background-tint: #ffbdc7;
 
   
   --ion-color-subject: #0000ff;
@@ -19,14 +19,20 @@
   --ion-color-subject-contrast-rgb: 255,255,255;
   --ion-color-subject-shade: #0000e0;
   --ion-color-subject-tint: #1a1aff;
-  
 
-  --ion-color-option: #ffffff;
-  --ion-color-option-rgb: 255,255,255;
+  --ion-color-option: #00ff00;
+  --ion-color-option-rgb: 0,255,0;
   --ion-color-option-contrast: #000000;
   --ion-color-option-contrast-rgb: 0,0,0;
-  --ion-color-option-shade: #e0e0e0;
-  --ion-color-option-tint: #ffffff;
+  --ion-color-option-shade: #00e000;
+  --ion-color-option-tint: #1aff1a;
+
+  --ion-color-verb: #ff0000;
+  --ion-color-verb-rgb: 255,0,0;
+  --ion-color-verb-contrast: #ffffff;
+  --ion-color-verb-contrast-rgb: 255,255,255;
+  --ion-color-verb-shade: #e00000;
+  --ion-color-verb-tint: #ff1a1a;
 
   
   /** primary **/

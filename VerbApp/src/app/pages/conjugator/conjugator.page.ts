@@ -4,7 +4,7 @@ import { DataService } from '../../services/data.service';
 import { grammarCatItem } from '../../models/grammar-cat-item.model';
 import { grammarCat } from '../../models/grammar-cat.model';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
-import { VerbsPage } from '../../modals/verbs/verbs.page';
+// import { VerbsPage } from '../../modals/verbs/verbs.page';
 import { SearchPage } from '../../modals/search/search.page';
 import { node } from "../../models/node.model";
 import { VerbTooltipPage } from '../../modals/verb-tooltip/verb-tooltip.page';
@@ -29,12 +29,7 @@ export class ConjugatorPage implements OnInit {
   selectedValues: any[];
   automaticClose = false;
   myFunInformation$ = new BehaviorSubject(this.service.information);
-  selectedOptions: { [id: string]: { translation, id } } = {
-    'verb': {
-      translation: '',
-      id: '',
-    }
-  };
+  selectedOptions: { [id: string]: { translation, id } } = {};
 
   selectedPath: { [id: string]: node} = {};
 
@@ -179,40 +174,6 @@ export class ConjugatorPage implements OnInit {
     this.scrollToBottom();
   }
 
-
-  
-  // This function opens the verb Modal and has the ability to send data to it.
-  async openModalWithData() {
-    const modal = await this.modalController.create({
-      component: VerbsPage,
-      // Currently not in use, might be later used to preserve data when the user re-opens the verb modal.
-      componentProps: {
-        verb0: this.verb0
-      }
-    });
-
-    modal.onWillDismiss().then(dataReturned => {
-      // trigger when about to close the modal
-      // TODO: This currently triggers a non-fatal error if dataReturned is None, which it is on Cancel
-      console.log(dataReturned);
-      if (dataReturned.data.id.length > 0) {
-        // Currently hard coded is choosing the language
-        this.showVerb = dataReturned.data.translation;
-        this.selectedOptions['verb'].translation = dataReturned.data.translation;
-        this.selectedOptions['verb'].id = dataReturned.data.id;
-        this.updateDisabled('verb',0);
-        this.updatePath('verb',0, dataReturned.data);
-        
-      }
-    });
-
-    // Currently does actively send information, but could be a useful feater that if a user already picked a verb that it
-    // appears in the search when they search again (?)
-    return await modal.present().then(_ => {
-      // triggered when opening the modal
-      console.log('Sending: ', this.verb0);
-    });
-  }
 
   async openModalSearch(whichSearch, index) {
     const modal = await this.modalController.create({

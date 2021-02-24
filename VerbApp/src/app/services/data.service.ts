@@ -23,6 +23,7 @@ export class DataService {
 
   constructor() {
     this.loadInformation();
+    this.information[0].disabled = false;
     console.log("information in data service", this.information);
     this.setinformation = JSON.parse(JSON.stringify(this.information));
     let root_node = this.tree.getRoot();

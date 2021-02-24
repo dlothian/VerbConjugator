@@ -21,8 +21,8 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer class="footer" [style.background-color]="myColor">
-  <ion-button class="cancel" (click)="closeModal()" [style.background-color]="myColor" fill="outline">Cancel</ion-button>
+<ion-footer class="footer" [style.background-color]="conj_type">
+  <ion-button class="cancel" (click)="closeModal()" [style.background-color]="conj_type" fill="outline">Cancel</ion-button>
   <ion-button class="select" (click)="closeModalWithData()" color="white" [style.color]="myColor" disabled="{{isDisabled}}">Select</ion-button>
 
 

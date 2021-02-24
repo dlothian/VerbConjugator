@@ -34,7 +34,6 @@ export class SearchPage implements OnInit {
     }
     this.matches = this.items;
     this.matches.sort((a, b) => (a.translation > b.translation) ? 1 : -1);
-    this.footerColor()
   }
 
   // Logs clicked verb
@@ -93,24 +92,6 @@ export class SearchPage implements OnInit {
       this.matches = this.matchEnglish();
     } else {
       this.matches = this.items;
-    }
-  }
-
-  footerColor(){
-    if (this.conj_type == 'pre-verb'){
-      this.myColor = '#006400'
-    }
-    if (this.conj_type == 'tense'){
-      this.myColor = '#e6a800'
-    }
-    if (this.conj_type == 'order'){
-      this.myColor = '#7851A9'
-    }
-    if (this.conj_type == 'subject'){
-      this.myColor = '#BB3F96'
-    }
-    if (this.conj_type == 'object'){
-      this.myColor = '#C53433'
     }
   }
 }
