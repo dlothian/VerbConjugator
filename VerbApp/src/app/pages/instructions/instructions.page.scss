@@ -1,0 +1,53 @@
+h5{
+    padding: 15px 10% !important;
+    text-align: center;
+}
+
+h2{
+    padding: 0 10% !important;
+    text-align: center;
+}
+
+p{
+    padding: 0 10% !important;
+    line-height: 150%;
+    // text-align: center;
+}
+
+ol{
+    padding: 0 !important;
+    margin: 0 10% !important;
+    line-height: 150%;
+    // text-align: center;
+}
+
+.disabled{
+    opacity: 0.2;
+}
+
+// body{
+//     padding: 15px 10px !important;
+//     // text-align: center;
+// }
+
+.logo{
+    // padding: 15px 15px 20% 15px !important;
+    width: 140px !important;
+    height: 140px !important;
+    margin: auto;
+    display: block;
+
+}
+
+div {
+    width:100%;
+    position: absolute;
+    bottom:0;
+}
+
+ion-content{
+    --ion-background-color: var(--ion-color-background) !important;
+    // --ion-background-color: transparent !important;
+}
+
+

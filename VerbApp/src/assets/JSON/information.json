@@ -240,12 +240,12 @@
             {
                 "id": "ecrire",
                 "translation": " write",
-                "base": "ecrire"
+                "base": "ecrireverb"
             },
             {
                 "id": "ecrire",
                 "translation": " write",
-                "base": "ecrireverb"
+                "base": "ecrire"
             },
             {
                 "id": "enfievrer",
