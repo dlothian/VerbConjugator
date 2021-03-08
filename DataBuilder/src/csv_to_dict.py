@@ -24,31 +24,31 @@ class CSVtoDict:
             self.delimiter = "_"
 
 
-    def cleanData(self):
-        f = open(self.input_file, 'r')
-        text = f.read()
-        
-        lines = [text.lower() for line in self.input_file]
-        self.input_file = self.input_file[:self.input_file.find(".csv")] + "_temp.csv"
-        with open(self.input_file, 'w') as out:
-            out.writelines(lines)
-
     def execute(self):
         self.cleanData()
         self.columnTitles()
         self.toDict()
 
+        
         p, a = self.assignRemoveAttributesTitles()
         if not self.order:
             self.order = p
         self.assignRemoveAttributes()
-
         self.removeDupe(self.list_of_dicts)
-
         if os.path.exists(self.input_file):
             os.remove(self.input_file)
 
         return self.list_of_dicts, self.attr_list_of_dicts
+
+
+    def cleanData(self):
+        f = open(self.input_file, 'r')
+        text = f.read()
+        
+        lines = [line.lower() for line in text]
+        self.input_file = self.input_file[:self.input_file.find(".csv")] + "_temp.csv"
+        with open(self.input_file, 'w') as out:
+            out.writelines(lines)
 
 
     def columnTitles(self):
@@ -69,6 +69,7 @@ class CSVtoDict:
             List of Dictionaries (list): List of converted dictionaries (with no duplicates)
         """
         with codecs.open(self.input_file, encoding='latin1') as csvfile:
+        # with open(self.input_file, 'r') as csvfile:
             scrape_dict = csv.DictReader(csvfile)
             self.list_of_dicts = [x for x in scrape_dict]
 
@@ -132,7 +133,6 @@ class CSVtoDict:
                     if attribute[x]["primary"] not in attr:
                         attr[attribute[x]["primary"]] = {}
                     attr[attribute[x]["primary"]][attribute[x]["attribute"]] = col[x]
-                    
 
             temp_dicts_list.append(no_attr)
             self.attr_list_of_dicts.append(attr)

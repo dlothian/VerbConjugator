@@ -240,11 +240,6 @@
             {
                 "id": "ecrire",
                 "translation": " write",
-                "base": "ecrireverb"
-            },
-            {
-                "id": "ecrire",
-                "translation": " write",
                 "base": "ecrire"
             },
             {
