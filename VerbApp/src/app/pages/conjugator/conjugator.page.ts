@@ -176,7 +176,7 @@ export class ConjugatorPage implements OnInit {
     this.information[index].cat = [];
     
     let children = this.selectedPath[pos].getChildren();
-    console.log("Got children", children)
+    console.log("Got children", children);
     selectFrom.forEach(element => {
       for (let i = 0; i < children.length; i++) {
         if (children[i].getId() == element.id){
