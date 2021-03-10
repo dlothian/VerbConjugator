@@ -1,10 +1,10 @@
 <meta charset="UTF-8">
 <ion-header>
-  <ion-toolbar class="header_tool" color="{{conj_type}}">
+  <ion-toolbar color="{{conj_type}}">
     <ion-title class="ion-no-padding" text-center>{{conj_type | titlecase}}</ion-title>
     
   </ion-toolbar>
-  <ion-searchbar (keyup) = getResults($event) autocapitalize="none" show-cancel="true" class="ion-no-padding" ></ion-searchbar>
+  <ion-searchbar (keyup) = getResults($event) autocapitalize="none" show-cancel="true" class="ion-no-padding" color="white"></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -15,23 +15,13 @@
         <ion-label class="ion-text-wrap" >{{item.translation | titlecase}}</ion-label>  
         <ion-label class="verb">{{item.base}}</ion-label>
       </div>
-      
-      
-      <!-- <img class="checkmark" src="../../assets/greencheckmark.png"> -->
     </ion-item>
   </ion-list>
 </ion-content>
-<!-- <ion-footer class="footer">
+<ion-footer class="footer">
+  <ion-button class="cancel" (click)="closeModal()" fill="outline">Cancel</ion-button>
+  <ion-button class="select" (click)="closeModalWithData()" color="white" disabled="{{isDisabled}}">Select</ion-button>
 
-  <ion-button class="cancel" (click)="closeModal()" color="{{conj_type}}" fill="outline">Cancel</ion-button>
-  <ion-button class="select" (click)="closeModalWithData()" color="{{conj_type}}" fill="outline" disabled="{{isDisabled}}">Select</ion-button>
 
-</ion-footer> -->
-
-<ion-footer class="footer" class="ion-no-border ion-text-center">
-  <ion-button class="cancel" (click)="closeModal()" color="{{conj_type}}">Cancel</ion-button>
-  <ion-button class="select" (click)="closeModalWithData()" color="{{conj_type}}" disabled="{{isDisabled}}">Select</ion-button>
 </ion-footer>
-
-
 

@@ -14,12 +14,12 @@ export class SearchPage implements OnInit {
   blank = '';
   query = '';
   matches = [];
-  @Input() public verb0: string;
   public selectedItem = '';
   selectedItemID = '';
   isDisabled = true;
   img = ''
   @Input() public conj_type: string;
+  @Input() public options: any[];
   items_total = Information['default'];
   items = [];
   myColor = '#006400';
@@ -27,13 +27,10 @@ export class SearchPage implements OnInit {
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
-    for (let item of this.items_total){
-      if (item.name == this.conj_type){
-        this.items = item.children;
-      }
-    }
-    this.matches = this.items;
+    console.log("OPTIONS", this.options);
+    this.matches = this.options;
     this.matches.sort((a, b) => (a.translation > b.translation) ? 1 : -1);
+    this.formatSelected();
   }
 
   // Logs clicked verb
@@ -47,6 +44,14 @@ export class SearchPage implements OnInit {
     }
     this.selectAbled()
     
+  }
+
+  formatSelected(){
+    var r = (<HTMLElement>document.querySelector(':root'));
+    let var_name = "--ion-color-" + this.conj_type;
+    var rootStyle = getComputedStyle(r);
+    let getColor = rootStyle.getPropertyValue(var_name);
+    r.style.setProperty('--holder', getColor);
   }
 
   selectAbled(){
@@ -67,13 +72,11 @@ export class SearchPage implements OnInit {
     await this.modalController.dismiss();
   }
 
-  // function currently searches for english items from the JSON file.
-  // TODO: Add multilingual functionality
   // Code taken from https://github.com/roedoejet/mothertongues-UI/blob/fv-template/src/pages/search/search.ts and then altered.
-  matchEnglish() {
+  matchTranslation() {
     const results = [];
     const re = new RegExp(this.query, 'i');
-    for (let entry of this.items) {
+    for (let entry of this.options) {
       if (re.test(entry.translation)) {
         results.push(entry);
       }
@@ -84,14 +87,38 @@ export class SearchPage implements OnInit {
     return (sortedAnswers);
   }
 
+  matchBase() {
+    const results = [];
+    const re = new RegExp(this.query, 'i');
+    for (let entry of this.options) {
+      if (re.test(entry.base)) {
+        results.push(entry);
+      }
+    }
+    let sortedAnswers;
+    if (results.length > 0){
+    sortedAnswers = results.sort(function (a, b) {
+      return a.base.length - b.base.length;
+    });
+  }else{
+    sortedAnswers = [];
+  }
+    return (sortedAnswers);
+  }
 
-  // On keyup event, this function searches for relevant items. If event results on an empty search, will show all possibilities.
+
+  // On keyup event, this function searches for relevant verbs. If event results on an empty search, will show all possibilities.
   getResults(event) {
     this.query = event.target.value;
     if (this.query.length > 0 ) {
-      this.matches = this.matchEnglish();
+      let t = this.matchTranslation();
+      let b = this.matchBase();
+      let results = b.concat(t);
+      console.log(results);
+      results = results.splice(0, results.length, ...(new Set(results)))
+      this.matches = results;
     } else {
-      this.matches = this.items;
+      this.matches = this.options;
     }
   }
 }

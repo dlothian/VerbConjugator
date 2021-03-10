@@ -18,14 +18,12 @@ export class DataService {
   conjugations = this.conjugation_info[1]  // conjugation tree
   conj_order = this.conjugation_info[0]  // level order of conjugation tree
   setinformation: Array<grammarCat> = [];
-  information: Array<grammarCat> = [];
+
   tree = new Tree(new node('root'));
 
   constructor() {
     this.loadInformation();
-    this.information[0].disabled = false;
-    console.log("information in data service", this.information);
-    this.setinformation = JSON.parse(JSON.stringify(this.information));
+    this.setinformation[0].disabled = false;
     let root_node = this.tree.getRoot();
     this.buildTree(this.JsonTree, root_node);
     console.log("tree", this.tree);
@@ -34,7 +32,7 @@ export class DataService {
   
 
   loadInformation(){ 
-    this.information = Information['default'].map(item => {
+    this.setinformation = Information['default'].map(item => {
       let catItem = item.children.map(child => {
         let item: grammarCatItem = {
           translation: child.translation,
@@ -54,6 +52,13 @@ export class DataService {
   }
 
   buildTree(tree, upper_node){
+    if(Array.isArray(tree)){
+      tree.forEach(id  =>{
+        let n_level_node = new node(id);
+        upper_node.addChild(n_level_node);
+      })
+      return;
+    }
     Object.keys(tree).forEach(id => {
       let n_level_node = new node(id);
       upper_node.addChild(n_level_node);
@@ -61,7 +66,7 @@ export class DataService {
         this.buildTree(tree[id],n_level_node);
       }
     });
-    return
+    return;
    }
 
   

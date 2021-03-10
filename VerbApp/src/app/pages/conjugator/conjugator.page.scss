@@ -5,7 +5,9 @@
   font-size: 250%;
   letter-spacing: 2px;
   text-align: center;
-
+  padding-bottom: 40%;
+  padding-top: 5%;
+  margin:0%;
 }
 
 ion-item{
@@ -20,16 +22,11 @@ ion-item{
 .title {
   font-size: 22px;
   width: 50%;
-  // color: white !important;
+  color: white !important;
 }
 
-.chosen{
-  font-weight: bold;
-}
-
-.chosen_base{
-  font-style: italic;
-  padding: 0;
+.tooltip{
+  color: white !important;
 }
 
 ion-label{
@@ -71,12 +68,15 @@ ion-card{
 }
 
 ion-button{
-  height: 10%;
-  width: 30%;
+  height: 80px;
+  width: 160px;
   font-weight: bold;
   font-size: 16px;
 }
 
 .error{
   color: red;
+  padding-top: 5%;
+  padding-bottom: 30%;
+  font-size: 16pt;
 }

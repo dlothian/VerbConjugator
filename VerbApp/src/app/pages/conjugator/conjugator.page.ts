@@ -22,33 +22,36 @@ export class ConjugatorPage implements OnInit {
 
   open = '../../../assets/minusicon.png';
   closed = '../../../assets/plusicon.png';
-
-  result = '';
   error = '';
+  show_result = false;
+  show_error = false;
+  result = '';
   showVerb = '';
   selectedValues: any[];
   automaticClose = false;
-  myFunInformation$ = new BehaviorSubject(this.service.information);
+  information: Array<grammarCat> = [];
+  myFunInformation$ = new BehaviorSubject(this.information);
   selectedOptions: { [id: string]: { translation, id, base } } = {};
-
   selectedPath: { [id: string]: node} = {};
 
   constructor(private modalController: ModalController, private service: DataService) { }
 
   ngOnInit() {
+    this.information = JSON.parse(JSON.stringify(this.service.setinformation));
+
     this.myFunInformation$.subscribe(data =>{
-      this.service.setinformation = data;
+      this.information = data;
     }
     );
-    this.myFunInformation$.next(this.service.setinformation);
+    this.myFunInformation$.next(JSON.parse(JSON.stringify(this.service.setinformation)));
 
     //Creates the array that contains the selected keys
-    this.service.information.forEach(element => {
+    this.information.forEach(element => {
       let key = element.name;
       this.selectedOptions[key] = {
         translation: '',
-        base: '',
         id: '',
+        base: ''
       };
     });
     return 
@@ -61,13 +64,26 @@ export class ConjugatorPage implements OnInit {
   }
 
   scrollToBottom() {
-    this.getContent().scrollToBottom(500);
+    let content= document.querySelector('ion-content');
+    setTimeout(function () {
+      content.scrollToBottom(500);
+    }, 250);
+    
   }
 
   scrollToTop() {
     this.getContent().scrollToTop(500);
   }
 
+  scroll(id) {
+    console.log(`scrolling to ${id}`);
+    let el = document.getElementById(id);
+    if (id == "result" || id == "error"){
+    setTimeout(function () {el.scrollIntoView({ behavior: 'smooth', block: 'end' })}, 250);
+    }else{
+      setTimeout(function () {el.scrollIntoView({ behavior: 'smooth', block: 'start' })}, 500);
+    }
+  }
 
   updateDisabled(pos,index: number){
     /* 
@@ -96,7 +112,7 @@ export class ConjugatorPage implements OnInit {
       let root = this.service.tree.getRoot();
       n = root.getChild(selected.id);
     } else{
-      prev_pos = this.service.information[index - 1].name;
+      prev_pos = this.information[index - 1].name;
       n = this.selectedPath[prev_pos].getChild(selected.id);
     }
     console.log("should be node", n);
@@ -111,9 +127,9 @@ export class ConjugatorPage implements OnInit {
     This function takes in an index and enables the next category
     to be accessible.
     */
-    if (index < this.service.information.length){
-      this.service.information[index].disabled = false;
-      this.myFunInformation$.next(this.service.information);
+    if (index < this.information.length){
+      this.information[index].disabled = false;
+      this.myFunInformation$.next(this.information);
     }
   }
 
@@ -124,10 +140,10 @@ export class ConjugatorPage implements OnInit {
     */
     
     let key: string;
-    for(let i = index; i < this.service.information.length; i ++){ // find all categories at a lower index
-      key = this.service.information[i].name; // get the name
+    for(let i = index; i < this.information.length; i ++){ // find all categories at a lower index
+      key = this.information[i].name; // get the name
       this.selectedOptions[key] = {translation: '', id: '', base:''};  // reset so that there is no selected option at that name
-      this.service.information[i].disabled=true; // disable access
+      this.information[i].disabled=true; // disable access
     }
     console.log(this.selectedOptions);
   }
@@ -150,39 +166,49 @@ export class ConjugatorPage implements OnInit {
     pos is the current category
      */
     this.selectedPath[pos] = n;
-    console.log("this.selectedPath[pos]", this.selectedPath[pos]);
+    console.log("this.selectedPath[",pos,"]", this.selectedPath[pos]);
   }
 
 
   updateInformation(index: number, pos:string) {
-    this.service.information[index].cat = [];
+    console.log("this.service.setinformation[index]", this.service.setinformation[index]);
     let selectFrom = this.service.setinformation[index].cat;
+    this.information[index].cat = [];
+    
     let children = this.selectedPath[pos].getChildren();
+    console.log("Got children", children)
     selectFrom.forEach(element => {
       for (let i = 0; i < children.length; i++) {
         if (children[i].getId() == element.id){
-          this.service.information[index].cat.push(element);
+          this.information[index].cat.push(element);
           break;
         }
       }
     });
-    this.myFunInformation$.next(this.service.information);
+    console.log(this.information);
+    this.myFunInformation$.next(this.information);
   }
 
   Conjugate(){
     console.log("conjugate",this.selectedOptions);
     let canconjugate = true;
     Object.keys(this.selectedOptions).forEach(element => {
-      
       if (this.selectedOptions[element].id === ''){
         canconjugate = false;
       }
     }); 
     if (!canconjugate){
-      this.error = "Please make sure to choose an option from each category."
+      this.show_error = true;
+      this.error = "Please make sure to choose an option from each category.";
+      this.result = '';
+      this.show_result = false;
+      // this.scrollToBottom();
+      this.scroll("error");
       return;
     }
     this.error = '';
+    this.show_result = true;
+    this.show_error = false;
     let results = this.service.conjugate(this.selectedOptions);
     let s = '';
     for (let r of results){
@@ -190,28 +216,16 @@ export class ConjugatorPage implements OnInit {
       s += ' ';
     }
     this.result = s;
-    this.scrollToBottom();
+    this.scroll("result");
+    // this.scrollToBottom();
   }
-
-  reset(){
-    let key: string;
-    for(let i = 0; i < this.service.information.length; i ++){ // find all categories at a lower index
-      key = this.service.information[i].name; // get the name
-      this.selectedOptions[key] = {translation: '', id: '', base:''};  // reset so that there is no selected option at that name
-      this.service.information[i].disabled=true; // disable access
-    }
-    this.service.information[0].disabled=false;
-    this.result = '';
-    this.error = '';
-    this.scrollToTop();
-  }
-
 
   async openModalSearch(whichSearch, index) {
     const modal = await this.modalController.create({
       component: SearchPage,
       componentProps: {
-        'conj_type':whichSearch
+        'conj_type':whichSearch,
+        'options':this.information[index].cat
       }
     });
 
@@ -220,12 +234,14 @@ export class ConjugatorPage implements OnInit {
       // trigger when about to close the modal
       if (dataReturned != null || dataReturned != undefined){
         if (dataReturned.data.id.length > 0) { // if something was returned, set it as the selected option
-          console.log(dataReturned.data);
           this.selectedOptions[whichSearch].translation = dataReturned.data.translation;
           this.selectedOptions[whichSearch].id = dataReturned.data.id;
           this.selectedOptions[whichSearch].base = dataReturned.data.base;
           this.updateDisabled(whichSearch,index);
           this.updatePath(whichSearch,index, dataReturned.data);
+          console.log(this.selectedOptions);
+          let id = this.information[index + 1].name;
+          this.scroll(id);
         }
       }
       console.log('Receive: ', dataReturned.data);
@@ -261,44 +277,20 @@ export class ConjugatorPage implements OnInit {
     this.myFunInformation$.unsubscribe();
   }
 
+  reset(){
+    let key: string;
+    for(let i = 0; i < this.information.length; i ++){ // find all categories at a lower index
+      key = this.information[i].name; // get the name
+      this.selectedOptions[key] = {translation: '', id: '', base:''};  // reset so that there is no selected option at that name
+      this.information[i].disabled=true; // disable access
+    }
+    this.information[0].disabled=false;
+    this.result = '';
+    this.error = '';
+    this.show_result = false;
+    this.show_error = true;
+    this.scrollToTop();
+  }
 
-  // chooseOpen(open: boolean){
-  //   if (open){
-  //     return this.open;
-  //   }else{
-  //     return this.closed;
-  //   }
-  // }
-
-  // toggleSection(index) {
-  //   this.service.information[index].open = !this.service.information[index].open;
-  //   if (this.automaticClose && this.service.information[index].open) {
-  //     this.service.information
-  //       .filter((item, itemIndex) => itemIndex != index)
-  //       .map(item => item.open = false);
-  //   };
-  // };
-
-
-  // toggleItem(index, childIndex) {
-    
-  //   let pos = this.service.information[index].name;
-  //   let prev_pos;
-  //   if (index == 0){
-  //     prev_pos = pos;
-  //   } else{
-  //     prev_pos = this.service.information[index - 1].name;
-  //   }
-
-  //   let selected = this.service.information[index].cat[childIndex];
-  //   this.setSelected(pos, selected);
-  //   this.service.information[index].open = false;
-  //   // this.ableCat(index+1);
-  //   // let n = this.selectedPath[prev_pos].getChild(selected.id);
-  //   // this.updateNodePath(n, pos);
-  //   // this.disableLowerCat(index+1);
-  //   // this.updateInformation(index+1, pos)
-    
-  // }
 
 }
