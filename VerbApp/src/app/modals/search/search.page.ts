@@ -29,7 +29,11 @@ export class SearchPage implements OnInit {
   ngOnInit() {
     console.log("OPTIONS", this.options);
     this.matches = this.options;
-    this.matches.sort((a, b) => (a.translation > b.translation) ? 1 : -1);
+    if (this.conj_type == "subject" || this.conj_type == "object"){
+      this.matches.sort((a, b) => (a.id > b.id) ? 1 : -1);
+    }else{
+      this.matches.sort((a, b) => (a.translation > b.translation) ? 1 : -1);
+    }
     this.formatSelected();
   }
 

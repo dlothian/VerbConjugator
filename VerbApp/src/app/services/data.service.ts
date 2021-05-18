@@ -37,6 +37,7 @@ export class DataService {
         let item: grammarCatItem = {
           translation: child.translation,
           id: child.id,
+          base: child.base
         }
         return item;
       });

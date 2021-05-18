@@ -5,6 +5,7 @@
 ion-title{
     font-size: 24px !important;
     padding: 5% 0 2% 0;
+    color: white !important;
 }
 
 ion-toolbar{
@@ -59,7 +60,8 @@ ion-item.active-item{
     background-color: var(--holder) !important;
 
     ion-label{
-        color:white;
+        color:white !important;
+        filter: brightness(100%) !important;
     }
 }
 
@@ -132,6 +134,11 @@ div.left ion-label{
     margin: 2px 5px;
 }
 
+ion-label{
+    color: var(--holder) !important;
+    filter: brightness(70%);
+}
+
 div.right .verb{
     bottom:0;
     position:absolute;
@@ -151,9 +158,10 @@ div.right .ion-text-wrap{
     -webkit-transform: translateX(+10%);
     transform: translateY(-5%);
     -webkit-transform: translateY(-15%);
-    font-style: italic;
+    // font-style: italic;
     font-size: 20px;
     margin: 2% 0 0 0;
+    line-height: 100%;
 }
 
 div.left img {
