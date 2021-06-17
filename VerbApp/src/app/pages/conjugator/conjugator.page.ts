@@ -41,8 +41,7 @@ export class ConjugatorPage implements OnInit {
 
     this.myFunInformation$.subscribe(data =>{
       this.information = data;
-    }
-    );
+    });
     this.myFunInformation$.next(JSON.parse(JSON.stringify(this.service.setinformation)));
 
     //Creates the array that contains the selected keys
@@ -171,7 +170,6 @@ export class ConjugatorPage implements OnInit {
 
 
   updateInformation(index: number, pos:string) {
-    console.log("this.service.setinformation[index]", this.service.setinformation[index]);
     let selectFrom = this.service.setinformation[index].cat;
     this.information[index].cat = [];
     
@@ -185,7 +183,7 @@ export class ConjugatorPage implements OnInit {
         }
       }
     });
-    console.log(this.information);
+    console.log("after this.information", this.information);
     this.myFunInformation$.next(this.information);
   }
 
@@ -221,6 +219,7 @@ export class ConjugatorPage implements OnInit {
   }
 
   async openModalSearch(whichSearch, index) {
+    console.log("this.information[index].cat", this.information[index].cat);
     const modal = await this.modalController.create({
       component: SearchPage,
       componentProps: {

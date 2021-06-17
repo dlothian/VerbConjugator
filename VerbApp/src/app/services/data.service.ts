@@ -23,10 +23,16 @@ export class DataService {
 
   constructor() {
     this.loadInformation();
+    for (let item of this.setinformation){
+      item.cat.forEach(child=>{
+        if(typeof child.type_color === 'undefined'){
+          child.type_color = "";
+        }
+      }); 
+    }
     this.setinformation[0].disabled = false;
     let root_node = this.tree.getRoot();
     this.buildTree(this.JsonTree, root_node);
-    console.log("tree", this.tree);
   }
 
   
@@ -37,7 +43,8 @@ export class DataService {
         let item: grammarCatItem = {
           translation: child.translation,
           id: child.id,
-          base: child.base
+          base: child.base,
+          type_color: child.type_color
         }
         return item;
       });

@@ -27,7 +27,7 @@ export class SearchPage implements OnInit {
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
-    console.log("OPTIONS", this.options);
+    console.log("this.options", this.options);
     this.matches = this.options;
     if (this.conj_type == "subject" || this.conj_type == "object"){
       this.matches.sort((a, b) => (a.id > b.id) ? 1 : -1);
@@ -36,11 +36,10 @@ export class SearchPage implements OnInit {
     }
     this.formatSelected();
     for (let item of this.matches){
-      if (item.hasOwnProperty('type') == false){
-        item.type = this.conj_type;
+      if (item.type_color == ""){
+        item.type_color = this.conj_type;
       }
     }
-
   }
 
   // Logs clicked verb

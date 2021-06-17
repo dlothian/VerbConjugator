@@ -12,8 +12,8 @@
   <ion-list class="body" color="white" lines="inset">
     <ion-item button (click)=selectItem(item) class="entry" color="white" *ngFor='let item of matches' detail="false" [class.active-item] = "selectedItemID === item.id">
       <div class=right>
-        <ion-label class="ion-text-wrap" color="{{item.type}}">{{item.translation | titlecase}}</ion-label>  
-        <ion-label class="verb" color="{{item.type}}">{{item.base}}</ion-label>
+        <ion-label class="ion-text-wrap" color="{{item.type_color}}">{{item.translation | titlecase}}</ion-label>  
+        <ion-label class="verb" color="{{item.type_color}}">{{item.base}}</ion-label>
       </div>
     </ion-item>
   </ion-list>
