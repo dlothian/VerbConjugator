@@ -35,6 +35,12 @@ export class SearchPage implements OnInit {
       this.matches.sort((a, b) => (a.translation > b.translation) ? 1 : -1);
     }
     this.formatSelected();
+    for (let item of this.matches){
+      if (item.hasOwnProperty('type') == false){
+        item.type = this.conj_type;
+      }
+    }
+
   }
 
   // Logs clicked verb
