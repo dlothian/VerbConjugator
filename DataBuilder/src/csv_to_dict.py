@@ -56,7 +56,7 @@ class CSVtoDict:
         Grabs the column/category titles.
         """
         
-        with codecs.open(self.input_file, encoding='latin1') as f:
+        with codecs.open(self.input_file, encoding='utf-8') as f:
             reader = csv.reader(f)
             self.headers = next(reader)
 
@@ -68,7 +68,7 @@ class CSVtoDict:
             Output File (str): Name of file where dictionary list is written.
             List of Dictionaries (list): List of converted dictionaries (with no duplicates)
         """
-        with codecs.open(self.input_file, encoding='latin1') as csvfile:
+        with codecs.open(self.input_file, encoding='utf-8') as csvfile:
         # with open(self.input_file, 'r') as csvfile:
             scrape_dict = csv.DictReader(csvfile)
             self.list_of_dicts = [x for x in scrape_dict]
