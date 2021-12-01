@@ -19,37 +19,19 @@ class TreeBuilder:
         self.output_file = output_file
         self.keys = keys
         self.toTree()
+        self.duplicates = set()
         
 
     def toTree(self):
         """
         Function does the following:
-        1. Ensures that the tree order submitted is valud
+        1. Ensures that the tree order submitted is valid
         2. Calls tree builder function
         3. Writes tree to output file
         """
         tree = {}
         if not self.keys:
             self.keys = list(self.input_dict[0].keys())
-        else:
-            temp_keys = []
-            for i in self.keys:
-                temp_keys.append(i)
-            temp_keys.sort()
-            original_keys = list(self.input_dict[0].keys())
-            original_keys.sort()
-
-            if not(set(temp_keys) <= set(original_keys)):
-                print("_________________")
-                print("ERROR:")
-                print("Order file does not contain valid category names")
-                print("Order file categories must be in the row headers in input file")
-                print()
-                print("Your file's options are:", ', '.join(original_keys))
-                print("Your order categories names are:", ', '.join(temp_keys))
-                print("Please check your order file and try again")
-                print("_________________")
-                exit()
 
         for verb in self.input_dict: # Going through each dictionary in new list
             self.recursiveTree(tree, verb, 0)
@@ -66,7 +48,7 @@ class TreeBuilder:
 
     def recursiveTree(self, tree, verb, index):
         """
-        Recursively creates
+        Recursively creates a Tree data structure for the given data, in the given order.
 
         Args:
             tree (dict or list): Tree at different levels, list if it's the last level.
@@ -74,7 +56,7 @@ class TreeBuilder:
             index (int): Index of position of keys array, denoting which level of the tree is current
 
         Returns:
-            [type]: [description]
+            None
         """
         
         if verb[self.keys[index]] not in tree: # If this node is not currently at this level, add it

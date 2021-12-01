@@ -5,7 +5,8 @@ import sys
 class OptionBuilder:
 
     def __init__(self, attr_dict_list, app_order):
-        """Class creates individual JSON files containing all elements of the individual options, 
+        """
+        Class creates individual JSON files containing all elements of the individual options, 
         with no duplicates
 
         Args:

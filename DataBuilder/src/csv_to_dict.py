@@ -3,6 +3,7 @@ import os, json
 import codecs
 import sys
 import fileinput
+import textdistance
 
 class CSVtoDict:
 
@@ -28,16 +29,13 @@ class CSVtoDict:
         self.cleanData()
         self.columnTitles()
         self.toDict()
-
-        
+        if os.path.exists(self.input_file):
+            os.remove(self.input_file)
+        self.list_of_dicts = self.removeDupe(self.list_of_dicts)
         p, a = self.assignRemoveAttributesTitles()
         if not self.order:
             self.order = p
         self.assignRemoveAttributes()
-        self.removeDupe(self.list_of_dicts)
-        if os.path.exists(self.input_file):
-            os.remove(self.input_file)
-
         return self.list_of_dicts, self.attr_list_of_dicts
 
 
@@ -56,7 +54,7 @@ class CSVtoDict:
         Grabs the column/category titles.
         """
         
-        with codecs.open(self.input_file, encoding='latin1') as f:
+        with codecs.open(self.input_file, encoding='UTF-8') as f:
             reader = csv.reader(f)
             self.headers = next(reader)
 
@@ -65,11 +63,9 @@ class CSVtoDict:
         """Reads in CSV file and 
 
         Returns:
-            Output File (str): Name of file where dictionary list is written.
-            List of Dictionaries (list): List of converted dictionaries (with no duplicates)
+            None
         """
-        with codecs.open(self.input_file, encoding='latin1') as csvfile:
-        # with open(self.input_file, 'r') as csvfile:
+        with codecs.open(self.input_file, encoding='UTF-8') as csvfile:
             scrape_dict = csv.DictReader(csvfile)
             self.list_of_dicts = [x for x in scrape_dict]
 
@@ -78,8 +74,9 @@ class CSVtoDict:
         """
         Removes duplicate dictionary entries from the list.
         """
-        
-        return [dict(t) for t in {tuple(d.items()) for d in removeFrom}]
+        s = {tuple(d.items()) for d in removeFrom}
+        return [dict(t) for t in s]
+    
 
 
     def assignRemoveAttributesTitles(self):
@@ -92,20 +89,34 @@ class CSVtoDict:
         """
         primary = set()
         attribute = {}
+        headers = set()
+        for col_name in self.headers:
+                if self.delimiter not in col_name:
+                    headers.add(col_name)
+
         if self.order:
             primary = set(self.order)
+            for o in primary:
+                if o not in headers:
+                    print("------------------")
+                    print("[FATAL ERROR]\n{} - Invalid column name. Check order.csv file.".format(o))
+                    mispelt = list()
+                    for h in headers:
+                        if textdistance.levenshtein(o, h) <=2:
+                            mispelt.append(h)
+                    if mispelt:
+                        print("Did you mean: {}?\n".format(", ".join(mispelt)))
+                    print("------------------")
+                    sys.exit()
+
+            
         else:
-            for col_name in self.headers:
-                if self.delimiter not in col_name:
-                    primary.add(col_name)
+            primary = headers
 
         for col_name in self.headers:
             if self.delimiter in col_name:
                 prim_attr = col_name.split(self.delimiter)
-                if prim_attr[0] not in primary:
-                    print(col_name, "is not a valid column name")
-
-                else:
+                if prim_attr[0] in primary:
                     attribute[col_name] = {"primary":prim_attr[0], "attribute":prim_attr[1]}
 
         return primary, attribute
@@ -133,6 +144,7 @@ class CSVtoDict:
                     if attribute[x]["primary"] not in attr:
                         attr[attribute[x]["primary"]] = {}
                     attr[attribute[x]["primary"]][attribute[x]["attribute"]] = col[x]
+                    
 
             temp_dicts_list.append(no_attr)
             self.attr_list_of_dicts.append(attr)

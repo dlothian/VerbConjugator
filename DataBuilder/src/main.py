@@ -1,6 +1,7 @@
 from tree_builder import TreeBuilder
 from csv_to_dict import CSVtoDict
 from option_builder import OptionBuilder
+from JSON_test import TESTS
 from tooltip import *
 import sys
 import json
@@ -45,7 +46,7 @@ def main():
             conjugation_order = orders[1].strip().split(',')
             conjugation_order = [x.strip().lower() for x in conjugation_order]
 
-    print("Progress [      ]",end='\r')
+    print("Progress [=     ]",end='\r')
     makeToolTips(tree_order)
     c2d = CSVtoDict(input_file=input_file, order=tree_order)
     dict_list, attr_dict_list = c2d.execute()
@@ -61,8 +62,6 @@ def main():
     print("Progress [====> ]",end='\r')
     tb = TreeBuilder(dict_list, "conjugation.json", conjugation_order)
     print("Progress [=====>]",end='\r')
-    
-
 
     with open('JSON/conjugation.json', 'r') as f:
         f_str = f.read()
@@ -75,6 +74,8 @@ def main():
 
     print("Progress [======]",end='\r')
     print("Complete. See JSON folder.")
+
+    TESTS.runtests()
 
 
 
